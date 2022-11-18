@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootsrtap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="indexController">
+        <h3>Список продуктов</h3>
+        <span><button class="btn btn-success" ng-click="addProductPage">Добавить</button></span>
+        <table class="table table-hover" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>ID</td>
+                <td>Наименование</td>
+                <td>Цена</td>
+                <td>Управление</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" placeholder="1" aria-describedby="basic-addon1" ng-model="inputId">
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="Яблоко" aria-describedby="basic-addon2" ng-model="inputTitle">
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="100" aria-describedby="basic-addon3" ng-model="inputCost">
+                </td>
+                <td>
+                    <button class="btn btn-success" ng-click="addProduct(inputId, inputTitle, inputCost)">Добавить</button>
+                </td>
+            </tr>
+            <tbody>
+            <tr ng-repeat="p in ProductsList">
+                <td>{{p.id}}</td>
+                <td>{{p.title}}</td>
+                <td>
+                    <button class="btn btn-primary" ng-click="changeCost(p.id, -10)">-</button>
+                    {{p.cost}}
+                    <button class="btn btn-primary" ng-click="changeCost(p.id, 10)">+</button>
+                </td>
+                <td><button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
